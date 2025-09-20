@@ -915,46 +915,42 @@ const ComplexesPage = () => {
 
       {/* Complex Detail Modal */}
       {selectedComplex && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
+        <div className="complexes-page__modal">
+          <div className="complexes-page__modal-content">
+            <div className="complexes-page__modal-header">
               {/* Header */}
-              <div className="flex justify-between items-start mb-6">
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem'}}>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">{selectedComplex.name}</h2>
-                  <p className="text-gray-600">{selectedComplex.location}</p>
+                  <h2 style={{fontSize: '1.875rem', fontWeight: 'bold', color: '#111827', marginBottom: '0.5rem'}}>{selectedComplex.name}</h2>
+                  <p style={{color: '#6b7280'}}>{selectedComplex.location}</p>
                 </div>
                 <button 
                   onClick={() => setSelectedComplex(null)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="complexes-page__modal-close"
                 >
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  ×
                 </button>
               </div>
 
               {/* Images */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Фотографии комплекса</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div style={{marginBottom: '1.5rem'}}>
+                <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '1rem'}}>Фотографии комплекса</h3>
+                <div className="complexes-page__image-grid">
                   {selectedComplex.images.map((image, index) => (
-                    <div key={index} className="relative cursor-pointer group" onClick={() => openImageModal(image, 'photo')}>
-                      <div className="relative w-full h-64 rounded-lg overflow-hidden">
-                        <img 
-                          src={getImagePath(image)} 
-                          alt={`${selectedComplex.name} - фото ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'flex';
-                          }}
-                        />
-                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-500 bg-gradient-to-br from-blue-50 to-blue-100" style={{display: 'none'}}>
-                          <div className="text-4xl mb-2">🏢</div>
-                          <div className="text-sm font-medium">{selectedComplex.name}</div>
-                          <div className="text-xs text-gray-400 mt-1">Фото {index + 1}</div>
-                        </div>
+                    <div key={index} className="complexes-page__image-item" onClick={() => openImageModal(image, 'photo')}>
+                      <img 
+                        src={getImagePath(image)} 
+                        alt={`${selectedComplex.name} - фото ${index + 1}`}
+                        className="complexes-page__image"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div className="complexes-page__image-placeholder" style={{display: 'none'}}>
+                        <div className="complexes-page__image-placeholder-icon">🏢</div>
+                        <div className="complexes-page__image-placeholder-title">{selectedComplex.name}</div>
+                        <div className="complexes-page__image-placeholder-text">Фото {index + 1}</div>
                       </div>
                     </div>
                   ))}
@@ -963,26 +959,24 @@ const ComplexesPage = () => {
 
               {/* Layouts */}
               {selectedComplex.layouts && selectedComplex.layouts.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Планировки квартир</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div style={{marginBottom: '1.5rem'}}>
+                  <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '1rem'}}>Планировки квартир</h3>
+                  <div className="complexes-page__layout-grid">
                     {selectedComplex.layouts.map((layout, index) => (
-                    <div key={index} className="relative cursor-pointer group" onClick={() => openImageModal(layout, 'layout')}>
-                      <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
-                        <img 
-                          src={getImagePath(layout)} 
-                          alt={`${selectedComplex.name} - планировка ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'flex';
-                          }}
-                        />
-                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-500 bg-gradient-to-br from-green-50 to-green-100" style={{display: 'none'}}>
-                          <div className="text-3xl mb-2">🏠</div>
-                          <div className="text-sm font-medium">Планировка {index + 1}</div>
-                          <div className="text-xs text-gray-400 mt-1">{selectedComplex.name}</div>
-                        </div>
+                    <div key={index} className="complexes-page__layout-item" onClick={() => openImageModal(layout, 'layout')}>
+                      <img 
+                        src={getImagePath(layout)} 
+                        alt={`${selectedComplex.name} - планировка ${index + 1}`}
+                        className="complexes-page__layout-image"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      <div className="complexes-page__image-placeholder" style={{display: 'none'}}>
+                        <div className="complexes-page__image-placeholder-icon">🏠</div>
+                        <div className="complexes-page__image-placeholder-title">Планировка {index + 1}</div>
+                        <div className="complexes-page__image-placeholder-text">{selectedComplex.name}</div>
                       </div>
                     </div>
                     ))}
