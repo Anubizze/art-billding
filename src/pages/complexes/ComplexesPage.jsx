@@ -830,7 +830,7 @@ const ComplexesPage = () => {
                 {/* Image */}
                 <div className="complexes-page__complex-image-container">
                   <img 
-                    src={complex.images[0]} 
+                    src={getImagePath(complex.images[0])} 
                     alt={complex.name}
                     className="complexes-page__complex-image"
                     onError={(e) => {
