@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getImagePath } from '../../shared/lib/imageUtils';
 import './consultation-form.css';
 
 const ConsultationForm = () => {
@@ -283,7 +284,7 @@ const ConsultationForm = () => {
             title="MAX - Позвонить"
           >
             <img 
-              src="/max.webp" 
+              src={getImagePath("/max.webp")} 
               alt="MAX" 
               className="consultation-form__contact-icon consultation-form__contact-icon--max"
             />

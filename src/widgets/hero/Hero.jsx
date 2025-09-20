@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImagePath } from '../../shared/lib/imageUtils';
 import './hero.css';
 
 const Hero = () => {
@@ -9,7 +10,7 @@ const Hero = () => {
     }
   };
   return (
-    <section className="hero" style={{backgroundImage: 'url(/Main.jpg)'}}>
+    <section className="hero" style={{backgroundImage: `url(${getImagePath('/Main.jpg')})`}}>
       {/* Dark overlay for better text readability */}
       <div className="hero__overlay"></div>
       

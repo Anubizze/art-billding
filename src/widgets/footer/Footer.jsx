@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../../shared/lib/imageUtils';
 import './footer.css';
 
 const Footer = () => {
@@ -75,7 +76,7 @@ const Footer = () => {
         <div className="footer__divider">
           <div className="footer__brand">
             <img 
-              src="/logo.png" 
+              src={getImagePath("/logo.png")} 
               alt="Art Building Group Logo" 
               className="footer__brand-logo"
             />

@@ -777,7 +777,7 @@ const ComplexesPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="complexes-page__hero" style={{backgroundImage: 'url(/Main.jpg)'}}>
+      <section className="complexes-page__hero" style={{backgroundImage: `url(${getImagePath('/Main.jpg')})`}}>
         {/* Dark overlay for better text readability */}
         <div className="complexes-page__hero-overlay"></div>
         
