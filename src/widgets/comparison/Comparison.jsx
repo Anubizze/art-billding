@@ -62,7 +62,7 @@ const Comparison = () => {
           </h3>
           <div className="comparison__slide-content">
             <iframe 
-              src="/pdf/prezent.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&scrollbar=0"
+              src="/art-billding/pdf/prezent.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&messages=0&scrollbar=0"
               className="comparison__slide-iframe"
               title="Презентация с инвестиционными расчетами"
             />
