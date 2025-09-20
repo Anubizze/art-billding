@@ -1051,44 +1051,35 @@ const ComplexesPage = () => {
 
               {/* Documents */}
               {selectedComplex.documents && selectedComplex.documents.length > 0 && (
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Документы</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div style={{marginBottom: '1.5rem'}}>
+                  <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '0.75rem'}}>Документы</h3>
+                  <div className="complexes-page__document-grid">
                     {selectedComplex.documents.map((doc, index) => (
                       <a
                         key={index}
-                        href={doc.url}
+                        href={getImagePath(doc.url)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors group"
+                        className="complexes-page__document-item"
                       >
-                        <div className="flex-shrink-0 mr-4">
+                        <div className="complexes-page__document-icon">
                           {doc.type === 'docx' ? (
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                            </div>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
                           ) : (
-                            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                            </div>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
                           )}
                         </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <div className="complexes-page__document-info">
+                          <h4 className="complexes-page__document-name">
                             {doc.name}
                           </h4>
-                          <p className="text-sm text-gray-500 mt-1">
+                          <p className="complexes-page__document-type">
                             {doc.type === 'docx' ? 'Документ Word' : 'Документ Word (старый формат)'}
                           </p>
-                        </div>
-                        <div className="flex-shrink-0">
-                          <svg className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
                         </div>
                       </a>
                     ))}
@@ -1098,19 +1089,18 @@ const ComplexesPage = () => {
 
               {/* Map */}
               {selectedComplex.coords && (
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Расположение ЖК</h3>
-                  <div className="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                <div style={{marginBottom: '1.5rem'}}>
+                  <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '1rem'}}>Расположение ЖК</h3>
+                  <div className="complexes-page__map-container">
                     <div 
                       ref={setMapRef}
-                      className="w-full h-64"
-                      style={{ minHeight: '256px' }}
+                      className="complexes-page__map"
                     />
                     
                     {/* Легенда */}
-                    <div className="absolute top-4 right-4 bg-white rounded-lg shadow-lg p-4 max-w-xs">
-                      <h4 className="font-semibold text-gray-900 mb-3">Жилые комплексы</h4>
-                      <div className="space-y-2">
+                    <div className="complexes-page__map-legend">
+                      <h4 style={{fontWeight: '600', color: '#111827', marginBottom: '0.75rem'}}>Жилые комплексы</h4>
+                      <div>
                         {[
                           'ЖК «Кленовая аллея»',
                           'ЖК «Ленинградские кварталы»',
@@ -1119,14 +1109,20 @@ const ComplexesPage = () => {
                           'ЖК «Эль Резиденция Нахимов»',
                           'ЖК «Мари»'
                         ].map((name, index) => (
-                          <div key={index} className="flex items-center">
-                            <div className="w-4 h-4 bg-yellow-500 rounded-full mr-2"></div>
-                            <span className="text-sm text-gray-700">{name}</span>
+                          <div key={index} className="complexes-page__map-legend-item">
+                            <div 
+                              className="complexes-page__map-legend-color"
+                              style={{ backgroundColor: '#fbbf24' }}
+                            ></div>
+                            <span style={{fontSize: '0.875rem', color: '#374151'}}>{name}</span>
                           </div>
                         ))}
-                        <div className="flex items-center mt-2">
-                          <div className="w-4 h-4 bg-sky-500 rounded-full mr-2"></div>
-                          <span className="text-sm text-gray-700">Азовское море</span>
+                        <div className="complexes-page__map-legend-item" style={{marginTop: '0.5rem'}}>
+                          <div 
+                            className="complexes-page__map-legend-color"
+                            style={{ backgroundColor: '#0ea5e9' }}
+                          ></div>
+                          <span style={{fontSize: '0.875rem', color: '#374151'}}>Азовское море</span>
                         </div>
                       </div>
                     </div>
