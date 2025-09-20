@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../widgets/header/Header';
 import Footer from '../../widgets/footer/Footer';
 import ConsultationSection from '../../widgets/consultation-section/ConsultationSection';
+import { getImagePath } from '../../shared/lib/imageUtils';
 import './complexes-page.css';
 
 const ComplexesPage = () => {
@@ -941,7 +942,7 @@ const ComplexesPage = () => {
                     <div key={index} className="relative cursor-pointer group" onClick={() => openImageModal(image, 'photo')}>
                       <div className="relative w-full h-64 rounded-lg overflow-hidden">
                         <img 
-                          src={image} 
+                          src={getImagePath(image)} 
                           alt={`${selectedComplex.name} - фото ${index + 1}`}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => {
@@ -969,7 +970,7 @@ const ComplexesPage = () => {
                     <div key={index} className="relative cursor-pointer group" onClick={() => openImageModal(layout, 'layout')}>
                       <div className="relative w-full h-48 rounded-lg border border-gray-200 overflow-hidden">
                         <img 
-                          src={layout} 
+                          src={getImagePath(layout)} 
                           alt={`${selectedComplex.name} - планировка ${index + 1}`}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           onError={(e) => {
@@ -1220,7 +1221,7 @@ const ComplexesPage = () => {
               {/* Main Image */}
               <div className="max-w-full max-h-full flex items-center justify-center">
                 <img 
-                  src={selectedImage} 
+                  src={getImagePath(selectedImage)} 
                   alt={`${selectedComplex.name} - ${imageType === 'photo' ? 'фотография' : 'планировка'}`}
                   className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                   onError={(e) => {

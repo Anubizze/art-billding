@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getImagePath } from '../../shared/lib/imageUtils';
 
 const ComplexCard = ({ complex }) => {
   const { name, location, description, images, mortgageRate, priceFrom, priceTo } = complex;
@@ -14,7 +15,7 @@ const ComplexCard = ({ complex }) => {
       <div className="relative h-64 bg-gray-200">
         {images && images.length > 0 && !imageError ? (
           <img 
-            src={images[0]} 
+            src={getImagePath(images[0])} 
             alt={name}
             className="w-full h-full object-cover"
             onError={handleImageError}
