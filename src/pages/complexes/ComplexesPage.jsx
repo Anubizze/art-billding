@@ -985,64 +985,79 @@ const ComplexesPage = () => {
               )}
 
               {/* Description */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">О комплексе</h3>
-                <p className="text-gray-700 leading-relaxed">{selectedComplex.fullDescription}</p>
+              <div style={{marginBottom: '1.5rem'}}>
+                <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '0.75rem'}}>О комплексе</h3>
+                <p style={{color: '#374151', lineHeight: '1.625'}}>{selectedComplex.fullDescription}</p>
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '1.5rem', marginBottom: '1.5rem'}}>
                 {/* Price */}
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Стоимость</h4>
-                  <div className="text-2xl font-bold text-blue-600">
+                <div style={{backgroundColor: '#eff6ff', padding: '1rem', borderRadius: '0.5rem'}}>
+                  <h4 style={{fontWeight: '600', color: '#111827', marginBottom: '0.5rem'}}>Стоимость</h4>
+                  <div style={{fontSize: '1.5rem', fontWeight: '700', color: '#2563eb'}}>
                     от {selectedComplex.priceFrom} ₽
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div style={{fontSize: '0.875rem', color: '#6b7280'}}>
                     до {selectedComplex.priceTo} ₽
                   </div>
                 </div>
 
                 {/* Developer */}
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Застройщик</h4>
-                  <div className="text-lg font-medium text-gray-700">{selectedComplex.developer}</div>
+                <div style={{backgroundColor: '#f9fafb', padding: '1rem', borderRadius: '0.5rem'}}>
+                  <h4 style={{fontWeight: '600', color: '#111827', marginBottom: '0.5rem'}}>Застройщик</h4>
+                  <div style={{fontSize: '1.125rem', fontWeight: '500', color: '#374151'}}>{selectedComplex.developer}</div>
                 </div>
 
                 {/* Completion */}
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Срок сдачи</h4>
-                  <div className="text-lg font-medium text-green-700">{selectedComplex.completionDate} год</div>
+                <div style={{backgroundColor: '#f0fdf4', padding: '1rem', borderRadius: '0.5rem'}}>
+                  <h4 style={{fontWeight: '600', color: '#111827', marginBottom: '0.5rem'}}>Срок сдачи</h4>
+                  <div style={{fontSize: '1.125rem', fontWeight: '500', color: '#16a34a'}}>{selectedComplex.completionDate} год</div>
                 </div>
 
                 {/* Floors */}
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Этажность</h4>
-                  <div className="text-lg font-medium text-purple-700">{selectedComplex.floors} этажей</div>
+                <div style={{backgroundColor: '#faf5ff', padding: '1rem', borderRadius: '0.5rem'}}>
+                  <h4 style={{fontWeight: '600', color: '#111827', marginBottom: '0.5rem'}}>Этажность</h4>
+                  <div style={{fontSize: '1.125rem', fontWeight: '500', color: '#9333ea'}}>{selectedComplex.floors} этажей</div>
                 </div>
               </div>
 
               {/* Features */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Особенности комплекса</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div style={{marginBottom: '1.5rem'}}>
+                <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '0.75rem'}}>Особенности комплекса</h3>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem'}}>
                   {selectedComplex.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <svg className="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div key={index} style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                      <svg 
+                        style={{width: '1.25rem', height: '1.25rem', color: '#22c55e'}} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-gray-700">{feature}</span>
+                      <span style={{color: '#374151', fontSize: '0.875rem'}}>{feature}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Rooms */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Доступные планировки</h3>
-                <div className="flex flex-wrap gap-3">
+              <div style={{marginBottom: '1.5rem'}}>
+                <h3 style={{fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '0.75rem'}}>Доступные планировки</h3>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.75rem'}}>
                   {selectedComplex.rooms.map((room, index) => (
-                    <span key={index} className="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-medium">
+                    <span 
+                      key={index} 
+                      style={{
+                        backgroundColor: '#dbeafe',
+                        color: '#1e40af',
+                        padding: '0.5rem 1rem',
+                        borderRadius: '0.5rem',
+                        fontWeight: '500',
+                        fontSize: '0.875rem'
+                      }}
+                    >
                       {room}
                     </span>
                   ))}
