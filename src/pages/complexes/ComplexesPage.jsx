@@ -1112,8 +1112,8 @@ const ComplexesPage = () => {
                           <div key={index} className="complexes-page__map-legend-item">
                             <div 
                               className="complexes-page__map-legend-color"
-                              style={{ backgroundColor: '#fbbf24' }}
-                            ></div>
+                              style={{ backgroundColor: '#22c55e', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem' }}
+                            >✓</div>
                             <span style={{fontSize: '0.875rem', color: '#374151'}}>{name}</span>
                           </div>
                         ))}
@@ -1131,22 +1131,61 @@ const ComplexesPage = () => {
               )}
 
               {/* Action Buttons */}
-              <div className="flex space-x-4">
+              <div style={{display: 'flex', gap: '1rem'}}>
                 <button 
                   onClick={scrollToConsultation}
-                  className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#2563eb',
+                    color: 'white',
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '0.5rem',
+                    fontWeight: '600',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1d4ed8'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#2563eb'}
                 >
                   Получить консультацию
                 </button>
                 <Link 
                   to="/"
-                  className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors text-center"
+                  style={{
+                    flex: 1,
+                    backgroundColor: '#16a34a',
+                    color: 'white',
+                    padding: '0.75rem 1.5rem',
+                    borderRadius: '0.5rem',
+                    fontWeight: '600',
+                    textDecoration: 'none',
+                    textAlign: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'background-color 0.2s ease'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#15803d'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#16a34a'}
                 >
                   На главную
                 </Link>
                 <button 
                   onClick={() => setSelectedComplex(null)}
-                  className="flex-1 border border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+                  style={{
+                    flex: 1,
+                    backgroundColor: 'white',
+                    color: '#374151',
+                    padding: '0.75rem 1.5rem',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '0.5rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#f9fafb'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = 'white'}
                 >
                   Закрыть
                 </button>
