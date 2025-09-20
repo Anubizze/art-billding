@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getImagePath } from '../../shared/lib/imageUtils';
 
 const ComplexCard = ({ complex }) => {
@@ -50,12 +51,12 @@ const ComplexCard = ({ complex }) => {
               Ипотека {mortgageRate}%
             </span>
           </div>
-          <a 
-            href="/complexes" 
+          <Link 
+            to="/complexes" 
             className="text-blue-600 hover:text-blue-800 font-medium"
           >
             Страница ЖК
-          </a>
+          </Link>
         </div>
       </div>
     </div>

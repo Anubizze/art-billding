@@ -78,7 +78,7 @@ const ComplexesPage = () => {
             {
               balloonContentHeader: `<div style="font-weight: bold; font-size: 16px; color: ${complexData.color};">${complexData.name}</div>`,
               balloonContentBody: `<div style="color: #666; margin-top: 5px;">${complexData.description}</div>`,
-              balloonContentFooter: `<div style="margin-top: 10px;"><button onclick="window.location.href='/complexes'" style="background: ${complexData.color}; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Страница ЖК</button></div>`,
+              balloonContentFooter: `<div style="margin-top: 10px;"><button onclick="window.location.href='#/complexes'" style="background: ${complexData.color}; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Страница ЖК</button></div>`,
               hintContent: complexData.name
             },
             {
