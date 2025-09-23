@@ -30,14 +30,14 @@ const Header = () => {
         <div className="header__content">
           {/* Logo */}
           <div className="header__logo">
-            <a href="/" className="header__logo">
+            <Link to="/" className="header__logo">
               <img 
                 src={getImagePath("/logo.png")} 
                 alt="Art Building Group Logo" 
                 className="header__logo-image"
               />
               <h1 className="header__logo-text">Art Building Group</h1>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -120,14 +120,14 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="header__mobile-menu header__mobile-menu--open">
             <div className="header__mobile-menu-header">
-              <a href="/" className="header__mobile-menu-logo" onClick={closeMobileMenu}>
+              <Link to="/" className="header__mobile-menu-logo" onClick={closeMobileMenu}>
                 <img 
                   src={getImagePath("/logo.png")} 
                   alt="Art Building Group Logo" 
                   className="header__mobile-menu-logo-image"
                 />
                 <span className="header__mobile-menu-logo-text">Art Building Group</span>
-              </a>
+              </Link>
               <button 
                 className="header__mobile-menu-close"
                 onClick={closeMobileMenu}
