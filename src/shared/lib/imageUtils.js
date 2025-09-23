@@ -1,13 +1,13 @@
 // Утилита для правильного формирования путей к изображениям
 export const getImagePath = (imagePath) => {
-  // В Vite файлы из папки public доступны напрямую из корня
-  // Если путь уже начинается с /, возвращаем как есть
+  // Для GitHub Pages добавляем базовый путь /art-billding/
+  // Если путь уже начинается с /, заменяем на /art-billding/
   if (imagePath.startsWith('/')) {
-    return imagePath;
+    return `/art-billding${imagePath}`;
   }
   
-  // Если путь не начинается с /, добавляем /
-  return `/${imagePath}`;
+  // Если путь не начинается с /, добавляем /art-billding/
+  return `/art-billding/${imagePath}`;
 };
 
 // Утилита для получения публичного URL изображения
