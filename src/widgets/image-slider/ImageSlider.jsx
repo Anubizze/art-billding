@@ -143,3 +143,4 @@ const ImageSlider = ({ images, title, autoPlay = true, interval = 5000 }) => {
 };
 
 export default ImageSlider;
+
