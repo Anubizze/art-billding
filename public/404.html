@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Building Group - Недвижимость у моря</title>
     <script>
-        // Перенаправляем на главную страницу с хешем
-        window.location.replace('/art-billding/#/');
+        // Получаем текущий путь и перенаправляем с хешем
+        const currentPath = window.location.pathname;
+        const hash = window.location.hash;
+        
+        // Если это не корень и нет хеша, добавляем хеш
+        if (currentPath !== '/art-billding/' && !hash) {
+            window.location.replace('/art-billding/#/');
+        } else if (currentPath !== '/art-billding/' && hash) {
+            // Если есть хеш, просто меняем путь
+            window.location.replace('/art-billding/' + hash);
+        }
     </script>
 </head>
 <body>
