@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitForm, sanitizeInput, validateFormData } from '../../shared/lib/formUtils';
 import './consultation-modal.css';
 
 const ConsultationModal = ({ isOpen, onClose }) => {
@@ -11,22 +12,11 @@ const ConsultationModal = ({ isOpen, onClose }) => {
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const [error, setError] = useState(null);
 
-  // Валидация и санитизация
-  const sanitizeInput = (input) => {
-    return input.replace(/[<>]/g, '').trim().substring(0, 1000);
-  };
-
+  // Валидация формы
   const validateForm = () => {
-    if (!formData.name.trim() || formData.name.length < 2) {
-      setError('Имя должно содержать минимум 2 символа');
-      return false;
-    }
-    if (!formData.phone.trim() || formData.phone.length < 10) {
-      setError('Введите корректный номер телефона');
-      return false;
-    }
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setError('Введите корректный email');
+    const validation = validateFormData(formData);
+    if (!validation.isValid) {
+      setError(validation.errors[0]);
       return false;
     }
     return true;
@@ -57,21 +47,12 @@ const ConsultationModal = ({ isOpen, onClose }) => {
       message: sanitizeInput(formData.message)
     };
     
-    try {
-      // Отправляем через наш сервер
-      const response = await fetch('http://localhost:3000/send-mail-simple.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(sanitizedData)
-      });
+    // Используем универсальную функцию отправки
+    const result = await submitForm(sanitizedData);
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        console.log('Form submitted successfully');
-        alert(`✅ Заявка отправлена на 9@astorius.ru!
+    if (result.success) {
+      console.log('Form submitted successfully');
+      alert(`✅ Заявка отправлена на 9@astorius.ru!
 
 Ваши данные:
 • Имя: ${result.data.name}
@@ -80,14 +61,11 @@ const ConsultationModal = ({ isOpen, onClose }) => {
 • Сообщение: ${result.data.message}
 
 Мы свяжемся с вами в ближайшее время!`);
-        
-        onClose();
-      } else {
-        throw new Error(result.error || `Ошибка отправки: ${response.status}`);
-      }
-    } catch (error) {
-      console.error('Error sending form:', error);
-      alert(`❌ Ошибка отправки заявки.
+      
+      onClose();
+    } else {
+      console.error('Form submission failed:', result.error);
+      alert(`❌ ${result.error}
 
 Ваши данные:
 • Имя: ${sanitizedData.name}
