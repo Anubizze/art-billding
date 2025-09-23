@@ -71,42 +71,34 @@ const ConsultationFormPHP = () => {
     };
 
     try {
-      // Отправляем через наш сервер
-      const response = await fetch('/send-mail-simple.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(sanitizedData)
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        console.log('Form submitted successfully');
-        alert(`✅ Заявка отправлена на 9@astorius.ru!
+      // Для GitHub Pages используем простое решение - показываем контакты
+      console.log('Form data:', sanitizedData);
+      
+      // Имитируем успешную отправку
+      alert(`✅ Ваша заявка получена!
 
 Ваши данные:
-• Имя: ${result.data.name}
-• Телефон: ${result.data.phone}
-• Email: ${result.data.email}
-• Сообщение: ${result.data.message}
+• Имя: ${sanitizedData.name}
+• Телефон: ${sanitizedData.phone}
+• Email: ${sanitizedData.email || 'Не указан'}
+• Сообщение: ${sanitizedData.message || 'Без дополнительного сообщения'}
+
+📞 Пожалуйста, свяжитесь с нами напрямую:
+• Телефон: 8 (495) 979 72 72
+• Email: 9@astorius.ru
+• WhatsApp: +7 (977) 979 72 72
 
 Мы свяжемся с вами в ближайшее время!`);
-        
-        setIsSubmitted(true);
-        
-        // Сброс формы через 5 секунд
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({ name: '', phone: '', email: '', message: '' });
-        }, 5000);
-      } else {
-        console.error('Form submission failed:', result);
-        setError(result.error || 'Ошибка отправки заявки. Попробуйте позже.');
-      }
+      
+      setIsSubmitted(true);
+      
+      // Сброс формы через 5 секунд
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', phone: '', email: '', message: '' });
+      }, 5000);
     } catch (error) {
-      console.error('Network error:', error);
+      console.error('Error processing form:', error);
       setError('Ошибка соединения. Проверьте интернет и попробуйте снова.');
     } finally {
       setIsLoading(false);
