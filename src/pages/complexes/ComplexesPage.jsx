@@ -136,28 +136,25 @@ const ComplexesPage = () => {
   // Обработка якорных ссылок на странице комплексов
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        // Если это якорная ссылка на консультацию на этой странице
-        if (hash === '#consultation') {
-          const element = document.querySelector(hash);
-          if (element) {
-            setTimeout(() => {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-          }
+      const fullHash = window.location.hash;
+      // Извлекаем якорную часть из хеша
+      const anchorHash = fullHash.replace(/^#\/.*?#/, '#');
+      
+      if (anchorHash && anchorHash === '#consultation') {
+        const element = document.querySelector(anchorHash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
         }
       }
     };
 
-    // Обрабатываем хеш при загрузке страницы
-    handleHashChange();
-
-    // Обрабатываем изменения хеша
-    window.addEventListener('hashchange', handleHashChange);
+    // Небольшая задержка для обработки якорных ссылок после загрузки
+    setTimeout(handleHashChange, 200);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      // Убираем обработчик при размонтировании
     };
   }, []);
 

@@ -14,9 +14,13 @@ const HomePage = () => {
   useEffect(() => {
     // Обработка якорных ссылок при загрузке страницы
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash) {
-        const element = document.querySelector(hash);
+      // Получаем хеш из URL, исключая маршрутизацию
+      const fullHash = window.location.hash;
+      // Если хеш содержит #/ то это маршрут, если нет - то якорная ссылка
+      const anchorHash = fullHash.replace(/^#\/.*?#/, '#');
+      
+      if (anchorHash && anchorHash !== '#/' && anchorHash !== '#') {
+        const element = document.querySelector(anchorHash);
         if (element) {
           // Небольшая задержка для корректной прокрутки
           setTimeout(() => {
@@ -26,14 +30,11 @@ const HomePage = () => {
       }
     };
 
-    // Обрабатываем хеш при загрузке страницы
-    handleHashChange();
-
-    // Обрабатываем изменения хеша
-    window.addEventListener('hashchange', handleHashChange);
+    // Небольшая задержка для обработки якорных ссылок после загрузки
+    setTimeout(handleHashChange, 200);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      // Убираем обработчик при размонтировании
     };
   }, []);
 

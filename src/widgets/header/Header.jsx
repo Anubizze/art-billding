@@ -7,10 +7,17 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
-    // Прокручиваем к секции на текущей странице
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Проверяем, находимся ли мы на главной странице
+    const currentPath = window.location.hash;
+    if (currentPath === '#/' || currentPath === '#') {
+      // На главной странице - прокручиваем к секции
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // На другой странице - переходим на главную с якорной ссылкой
+      window.location.href = `#/${sectionId}`;
     }
     setIsMobileMenuOpen(false); // Закрываем меню после клика
   };

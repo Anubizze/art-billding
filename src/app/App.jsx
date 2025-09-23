@@ -9,6 +9,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/map" element={<HomePage />} />
+        <Route path="/advantages" element={<HomePage />} />
+        <Route path="/investment" element={<HomePage />} />
         <Route path="/complexes" element={<ComplexesPage />} />
         <Route path="/complex/:complexId" element={<UniversalComplexPage />} />
         {/* Catch-all route for any unmatched paths */}
