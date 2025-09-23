@@ -1,0 +1,176 @@
+/* Consultation modal feature styles */
+.consultation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.consultation-modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  max-width: 28rem;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.consultation-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.consultation-modal__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.consultation-modal__close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.consultation-modal__close:hover {
+  color: #6b7280;
+}
+
+.consultation-modal__close-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.consultation-modal__error {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+}
+
+.consultation-modal__error-content {
+  display: flex;
+}
+
+.consultation-modal__error-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f87171;
+  margin-right: 0.75rem;
+}
+
+.consultation-modal__error-text {
+  flex: 1;
+}
+
+.consultation-modal__error-description {
+  font-size: 0.875rem;
+  color: #b91c1c;
+}
+
+.consultation-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.consultation-modal__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-modal__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.consultation-modal__input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultation-modal__input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 98, 235, 0.1);
+}
+
+.consultation-modal__textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultation-modal__textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 98, 235, 0.1);
+}
+
+.consultation-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.consultation-modal__button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.consultation-modal__button--secondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.consultation-modal__button--secondary:hover {
+  background-color: #f9fafb;
+}
+
+.consultation-modal__button--primary {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+
+.consultation-modal__button--primary:hover {
+  background-color: #1d4ed8;
+}
+
+
+
+
+
+
+
+
+
