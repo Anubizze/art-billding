@@ -1,0 +1,268 @@
+/* Consultation form feature styles */
+.consultation-form {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.consultation-form__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.consultation-form__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.consultation-form__description {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.consultation-form__success {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.consultation-form__success-icon {
+  color: #16a34a;
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.consultation-form__success-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #166534;
+  margin-bottom: 0.5rem;
+}
+
+.consultation-form__success-description {
+  color: #15803d;
+}
+
+.consultation-form__error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.consultation-form__error-content {
+  display: flex;
+}
+
+.consultation-form__error-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #f87171;
+  margin-right: 0.75rem;
+}
+
+.consultation-form__error-text {
+  flex: 1;
+}
+
+.consultation-form__error-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #991b1b;
+  margin-bottom: 0.5rem;
+}
+
+.consultation-form__error-description {
+  font-size: 0.875rem;
+  color: #b91c1c;
+}
+
+.consultation-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.consultation-form__row {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.consultation-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-form__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.consultation-form__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultation-form__input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 98, 235, 0.1);
+}
+
+.consultation-form__textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultation-form__textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 98, 235, 0.1);
+}
+
+.consultation-form__submit {
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.consultation-form__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.consultation-form__spinner {
+  animation: spin 1s linear infinite;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: white;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.consultation-form__disclaimer {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.consultation-form__contacts {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.consultation-form__contacts-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.consultation-form__contacts-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.consultation-form__contact-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.consultation-form__contact-button--phone {
+  background-color: #16a34a;
+  color: white;
+}
+
+.consultation-form__contact-button--phone:hover {
+  background-color: #15803d;
+}
+
+.consultation-form__contact-button--whatsapp {
+  background-color: #16a34a;
+  color: white;
+}
+
+.consultation-form__contact-button--whatsapp:hover {
+  background-color: #15803d;
+}
+
+.consultation-form__contact-button--max {
+  background-color: #2563eb;
+  color: white;
+}
+
+.consultation-form__contact-button--max:hover {
+  background-color: #1d4ed8;
+}
+
+.consultation-form__contact-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.consultation-form__contact-icon--max {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+.consultation-form__phone-number {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .consultation-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+
+
+
+
+
+
+
