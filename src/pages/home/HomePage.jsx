@@ -14,24 +14,27 @@ const HomePage = () => {
   useEffect(() => {
     // Обработка якорных ссылок при загрузке страницы
     const handleHashChange = () => {
-      // Получаем хеш из URL, исключая маршрутизацию
       const fullHash = window.location.hash;
-      // Если хеш содержит #/ то это маршрут, если нет - то якорная ссылка
-      const anchorHash = fullHash.replace(/^#\/.*?#/, '#');
       
-      if (anchorHash && anchorHash !== '#/' && anchorHash !== '#') {
-        const element = document.querySelector(anchorHash);
-        if (element) {
-          // Небольшая задержка для корректной прокрутки
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
+      // Проверяем, есть ли якорная ссылка в URL
+      if (fullHash && fullHash.startsWith('#/')) {
+        const sectionId = fullHash.replace('#/', '');
+        
+        // Проверяем, что это не маршрут, а якорная ссылка
+        if (['map', 'advantages', 'investment', 'faq', 'consultation', 'presentation'].includes(sectionId)) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            // Небольшая задержка для корректной прокрутки
+            setTimeout(() => {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+          }
         }
       }
     };
 
     // Небольшая задержка для обработки якорных ссылок после загрузки
-    setTimeout(handleHashChange, 200);
+    setTimeout(handleHashChange, 500);
 
     return () => {
       // Убираем обработчик при размонтировании

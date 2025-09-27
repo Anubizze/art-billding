@@ -676,7 +676,7 @@ const UniversalComplexPage = () => {
   };
 
   const scrollToConsultation = () => {
-    const consultationSection = document.getElementById('consultation-section');
+    const consultationSection = document.getElementById('consultation');
     if (consultationSection) {
       consultationSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -785,6 +785,7 @@ const UniversalComplexPage = () => {
             title={complex.name}
             autoPlay={true}
             interval={5000}
+            type={imageType}
           />
         </div>
       </section>
@@ -882,7 +883,7 @@ const UniversalComplexPage = () => {
             {complex.documents.map((doc, index) => (
               <a 
                 key={index}
-                href={doc.url} 
+                href={getImagePath(doc.url)} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="complex-detail-page__document"

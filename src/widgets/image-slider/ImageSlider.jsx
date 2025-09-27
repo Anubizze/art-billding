@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getImagePath } from '../../shared/lib/imageUtils';
 import './image-slider.css';
 
-const ImageSlider = ({ images, title, autoPlay = true, interval = 5000 }) => {
+const ImageSlider = ({ images, title, autoPlay = true, interval = 5000, type = 'photo' }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
@@ -47,13 +47,13 @@ const ImageSlider = ({ images, title, autoPlay = true, interval = 5000 }) => {
   }
 
   return (
-    <div className="image-slider">
+    <div className={`image-slider ${type === 'layout' ? 'image-slider--layouts' : ''}`}>
       <div className="image-slider__container">
         {/* Main Image */}
         <div className="image-slider__main">
           <img
             src={getImagePath(images[currentIndex])}
-            alt={`${title} - фото ${currentIndex + 1}`}
+            alt={`${title} - ${type === 'layout' ? 'планировка' : 'фото'} ${currentIndex + 1}`}
             className="image-slider__image"
             onError={(e) => {
               e.target.style.display = 'none';

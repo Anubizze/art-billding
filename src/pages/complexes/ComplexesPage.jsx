@@ -862,6 +862,7 @@ const ComplexesPage = () => {
                     title={complex.name}
                     autoPlay={true}
                     interval={5000}
+                    type="photo"
                   />
                   <div className="complexes-page__complex-badge">
                     Ипотека {complex.mortgageRate}%
@@ -910,6 +911,31 @@ const ComplexesPage = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* Documents */}
+                  {complex.documents && complex.documents.length > 0 && (
+                    <div className="complexes-page__complex-documents">
+                      <h4 className="complexes-page__complex-documents-title">Документы:</h4>
+                      <div className="complexes-page__complex-documents-list">
+                        {complex.documents.map((doc, index) => (
+                          <a
+                            key={index}
+                            href={getImagePath(doc.url)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="complexes-page__complex-document"
+                          >
+                            <div className="complexes-page__complex-document-icon">
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            </div>
+                            <span className="complexes-page__complex-document-name">{doc.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Action Buttons */}
                   <div className="complexes-page__complex-actions">

@@ -9,15 +9,24 @@ const Header = () => {
   const scrollToSection = (sectionId) => {
     // Проверяем, находимся ли мы на главной странице
     const currentPath = window.location.hash;
-    if (currentPath === '#/' || currentPath === '#') {
+    const isOnHomePage = currentPath === '#/' || currentPath === '#' || currentPath === '';
+    
+    if (isOnHomePage) {
       // На главной странице - прокручиваем к секции
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // На другой странице - переходим на главную с якорной ссылкой
-      window.location.href = `#/${sectionId}`;
+      // На другой странице - проверяем, есть ли секция на текущей странице
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Секция есть на текущей странице - прокручиваем к ней
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Секции нет - переходим на главную с якорной ссылкой
+        window.location.href = `#/${sectionId}`;
+      }
     }
     setIsMobileMenuOpen(false); // Закрываем меню после клика
   };
