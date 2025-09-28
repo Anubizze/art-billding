@@ -1356,14 +1356,22 @@ const ComplexesPage = () => {
 
       {/* Image Zoom Modal */}
       {selectedImage && selectedComplex && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[60] p-4">
-          <div className="relative max-w-7xl max-h-full w-full h-full flex flex-col">
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-[60] p-4"
+          onClick={(e) => {
+            // Закрываем модальное окно при клике на фон
+            if (e.target === e.currentTarget) {
+              closeImageModal();
+            }
+          }}
+        >
+          <div className="relative max-w-8xl max-h-full w-full h-full flex flex-col">
             {/* Header */}
-            <div className="flex justify-between items-center text-white mb-4">
+            <div className="flex justify-between items-center text-white mb-4 bg-black bg-opacity-50 p-4 rounded-lg">
               <div>
-                <h3 className="text-xl font-semibold">{selectedComplex.name}</h3>
-                <p className="text-sm text-gray-300">
-                  {imageType === 'photo' ? 'Фотография' : 'Планировка'} - {imageType === 'photo' ? 
+                <h3 className="text-2xl font-bold">{selectedComplex.name}</h3>
+                <p className="text-sm text-gray-300 mt-1">
+                  {imageType === 'photo' ? '📸 Фотография' : '🏠 Планировка'} - {imageType === 'photo' ? 
                     selectedComplex.images.indexOf(selectedImage) + 1 : 
                     selectedComplex.layouts.indexOf(selectedImage) + 1
                   } из {imageType === 'photo' ? selectedComplex.images.length : selectedComplex.layouts.length}
@@ -1371,7 +1379,7 @@ const ComplexesPage = () => {
               </div>
               <button 
                 onClick={closeImageModal}
-                className="text-white hover:text-gray-300 transition-colors"
+                className="text-white hover:text-gray-300 transition-colors bg-red-600 hover:bg-red-700 p-2 rounded-full"
               >
                 <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1386,7 +1394,8 @@ const ComplexesPage = () => {
                 <>
                   <button 
                     onClick={() => navigateImage('prev')}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-all duration-300 z-10"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full transition-all duration-300 z-10 shadow-lg hover:shadow-xl"
+                    title="Предыдущее изображение"
                   >
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1394,7 +1403,8 @@ const ComplexesPage = () => {
                   </button>
                   <button 
                     onClick={() => navigateImage('next')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-all duration-300 z-10"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full transition-all duration-300 z-10 shadow-lg hover:shadow-xl"
+                    title="Следующее изображение"
                   >
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -1404,14 +1414,25 @@ const ComplexesPage = () => {
               )}
 
               {/* Main Image */}
-              <div className="max-w-full max-h-full flex items-center justify-center">
+              <div className="max-w-full max-h-full flex items-center justify-center relative group">
                 <img 
                   src={getImagePath(selectedImage)} 
                   alt={`${selectedComplex.name} - ${imageType === 'photo' ? 'фотография' : 'планировка'}`}
-                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 cursor-zoom-in"
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'flex';
+                  }}
+                  onClick={() => {
+                    // Добавляем возможность полного масштабирования по клику
+                    const img = e.target;
+                    if (img.style.transform === 'scale(1.5)') {
+                      img.style.transform = 'scale(1)';
+                      img.style.cursor = 'zoom-in';
+                    } else {
+                      img.style.transform = 'scale(1.5)';
+                      img.style.cursor = 'zoom-out';
+                    }
                   }}
                 />
                 <div className="w-full h-96 flex flex-col items-center justify-center text-gray-300 bg-gray-800 rounded-lg" style={{display: 'none'}}>
@@ -1421,25 +1442,30 @@ const ComplexesPage = () => {
                     {imageType === 'photo' ? 'Фотография' : 'Планировка'} не найдена
                   </div>
                 </div>
+                {/* Подсказка о масштабировании */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  🔍 Нажмите для увеличения
+                </div>
               </div>
             </div>
 
             {/* Thumbnail Navigation */}
             {(imageType === 'photo' ? selectedComplex.images.length : selectedComplex.layouts.length) > 1 && (
-              <div className="mt-4 flex justify-center">
-                <div className="flex space-x-2 overflow-x-auto max-w-full">
+              <div className="mt-6 flex justify-center bg-black bg-opacity-30 p-4 rounded-lg">
+                <div className="flex space-x-3 overflow-x-auto max-w-full">
                   {(imageType === 'photo' ? selectedComplex.images : selectedComplex.layouts).map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(image)}
-                      className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-3 transition-all duration-300 hover:scale-110 ${
                         selectedImage === image 
-                          ? 'border-blue-500 shadow-lg' 
-                          : 'border-gray-600 hover:border-gray-400'
+                          ? 'border-blue-500 shadow-lg ring-2 ring-blue-300' 
+                          : 'border-gray-600 hover:border-blue-400'
                       }`}
+                      title={`${imageType === 'photo' ? 'Фото' : 'Планировка'} ${index + 1}`}
                     >
                       <img 
-                        src={image} 
+                        src={getImagePath(image)} 
                         alt={`${imageType === 'photo' ? 'Фото' : 'Планировка'} ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
@@ -1451,7 +1477,7 @@ const ComplexesPage = () => {
 
             {/* Keyboard Instructions */}
             <div className="mt-4 text-center text-gray-400 text-sm">
-              Используйте ← → для навигации, Esc для закрытия
+              Используйте ← → для навигации, Esc для закрытия, клик по фону для закрытия
             </div>
           </div>
         </div>
