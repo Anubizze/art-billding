@@ -1,6 +1,15 @@
 // Утилита для правильного формирования путей к изображениям
 export const getImagePath = (imagePath) => {
-  // Для GitHub Pages и локальной разработки добавляем базовый путь /art-billding/
+  // Проверяем, находимся ли мы в локальной разработке
+  const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  
+  // Для локальной разработки возвращаем путь как есть
+  if (isLocalDev) {
+    console.log(`Local dev - Image path: ${imagePath}`);
+    return imagePath;
+  }
+  
+  // Для GitHub Pages добавляем базовый путь /art-billding/
   // Если путь уже начинается с /art-billding/, возвращаем как есть
   if (imagePath.startsWith('/art-billding/')) {
     return imagePath;
@@ -13,7 +22,7 @@ export const getImagePath = (imagePath) => {
       segment ? encodeURIComponent(segment) : segment
     ).join('/');
     const result = `/art-billding${encodedPath}`;
-    console.log(`Image path: ${imagePath} -> ${result}`);
+    console.log(`GitHub Pages - Image path: ${imagePath} -> ${result}`);
     return result;
   }
   
@@ -22,7 +31,7 @@ export const getImagePath = (imagePath) => {
     segment ? encodeURIComponent(segment) : segment
   ).join('/');
   const result = `/art-billding/${encodedPath}`;
-  console.log(`Image path: ${imagePath} -> ${result}`);
+  console.log(`GitHub Pages - Image path: ${imagePath} -> ${result}`);
   return result;
 };
 
