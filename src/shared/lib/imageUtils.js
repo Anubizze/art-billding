@@ -8,11 +8,22 @@ export const getImagePath = (imagePath) => {
   
   // Если путь начинается с /, добавляем /art-billding
   if (imagePath.startsWith('/')) {
-    return `/art-billding${imagePath}`;
+    // URL-кодируем путь для правильной обработки пробелов и специальных символов
+    const encodedPath = imagePath.split('/').map(segment => 
+      segment ? encodeURIComponent(segment) : segment
+    ).join('/');
+    const result = `/art-billding${encodedPath}`;
+    console.log(`Image path: ${imagePath} -> ${result}`);
+    return result;
   }
   
   // Если путь не начинается с /, добавляем /art-billding/
-  return `/art-billding/${imagePath}`;
+  const encodedPath = imagePath.split('/').map(segment => 
+    segment ? encodeURIComponent(segment) : segment
+  ).join('/');
+  const result = `/art-billding/${encodedPath}`;
+  console.log(`Image path: ${imagePath} -> ${result}`);
+  return result;
 };
 
 // Утилита для получения публичного URL изображения

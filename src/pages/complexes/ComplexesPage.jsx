@@ -328,6 +328,7 @@ const ComplexesPage = () => {
         '/4 АУРА I/11.jpg',
         '/4 АУРА I/19.jpg',
         '/4 АУРА I/21 (1).jpg',
+        '/4 АУРА I/5.webp',
         '/4 АУРА I/36.jpg.webp',
         '/4 АУРА I/37.jpg.webp',
         '/4 АУРА I/38.jpg.webp',
