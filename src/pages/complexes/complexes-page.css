@@ -595,51 +595,6 @@
   }
 }
 
-/* Мобильная адаптивность для изображений */
-@media (max-width: 768px) {
-  .complexes-page__layout-image {
-    height: 6rem;
-  }
-  
-  .complexes-page__image {
-    height: 6rem;
-  }
-  
-  .complexes-page__image-placeholder {
-    height: 6rem;
-  }
-  
-  .complexes-page__layout-grid {
-    gap: 0.5rem;
-  }
-  
-  .complexes-page__image-grid {
-    gap: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .complexes-page__layout-image {
-    height: 5rem;
-  }
-  
-  .complexes-page__image {
-    height: 5rem;
-  }
-  
-  .complexes-page__image-placeholder {
-    height: 5rem;
-  }
-  
-  .complexes-page__layout-grid {
-    gap: 0.375rem;
-  }
-  
-  .complexes-page__image-grid {
-    gap: 0.375rem;
-  }
-}
-
 .complexes-page__layout-item {
   position: relative;
   cursor: pointer;
