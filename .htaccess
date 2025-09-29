@@ -60,6 +60,29 @@ Header unset X-Powered-By
     ExpiresByType image/webp "access plus 1 month"
 </IfModule>
 
+# Настройка MIME типов для файлов без расширений в папке АУРА I
+<Files "1">
+    ForceType image/jpeg
+</Files>
+<Files "11">
+    ForceType image/jpeg
+</Files>
+<Files "19">
+    ForceType image/jpeg
+</Files>
+<Files "31">
+    ForceType image/jpeg
+</Files>
+<Files "32">
+    ForceType image/jpeg
+</Files>
+<Files "33">
+    ForceType image/jpeg
+</Files>
+<Files "34">
+    ForceType image/jpeg
+</Files>
+
 # Сжатие файлов
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
